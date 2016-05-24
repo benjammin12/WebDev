@@ -1,0 +1,18 @@
+body {
+    background:url("https://pixabay.com/static/uploads/photo/2011/01/05/23/53/sunrise-4400_960_720.jpg");
+    background-size: 100% 200px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: #f9bd7c !important;
+
+}
+
+
+.header{
+    color: whitesmoke;
+}
+
+
+.exWork {
+    padding-top: 50px;
+}
