@@ -75,6 +75,10 @@
 
 			],{duration: 5000, fade:750});
 
+      $(window).scroll(function(){
+          $("#slideRound").css("opacity", 1- $(window).scrollTop() / 350);
+      });
+
 		</script>
 
     </body>
