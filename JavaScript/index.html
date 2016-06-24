@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 50%;
+		
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+        var deerPark = {lat:40.7618, lng: -73.3293};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: deerPark,
+		  mapTypeId: google.maps.MapTypeId.SATELLITE
+        });
+		
+		//40.7618° N, 73.3293° W
+		//40.760888, -73.329048
+
+        var deerParkInfo = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Deer Park</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Deer Park</b>, also referred to as <b>DP</b>, is a small ' +
+            'town located on central Long Island<br>'+
+			'It holds the world record for most fast food restaurants on a single road'+
+			'currelntly home to the only sonic in New York.</p>'+
+			'I grew up in Deer Park and have lived here all my life'+
+            '<p><a href="https://en.wikipedia.org/wiki/Deer_Park,_New_York">Wiki</a> '+
+            '(last visited June 22, 2009).</p>'+
+            '</div>'+
+            '</div>';
+			
+		var  nashvilleTN = '<h1> Nashville, TN </h1>' +
+						'<p>Visited during my 2015 roadtrip. this place has '+
+						'an awesome nightlife that is based around its rich ' +
+						'music culture</p>'
+		/*		
+		var placesVisitied = {
+			"Cities" : ["Deer Park", "Nashville", "Summit"],
+		
+		}
+		
+		*/
+			
+			//TODO: onclick add new marker 
+	//TODO: create a repition statement or function to add a list of cities plus there info rather than one at a time
+
+        var infowindow = new google.maps.InfoWindow({
+          content: deerParkInfo
+        });
+		
+		var nashVilleWindow = new google.maps.InfoWindow({
+			content: nashvilleTN
+		});
+		
+		var nashvilleMarker = new google.maps.Marker({
+			position: {lat: 36.1627 , lng: -86.7816},
+			map: map,
+			title: 'Nashville, TN'
+		});
+
+        var marker = new google.maps.Marker({
+          position: deerPark,
+          map: map,
+          title: 'Deer Park, NY'
+        });
+		
+		//42.5795° N, 74.5882° W
+		var summit = {lat:42.5795, lng: -74.5882};
+		var sum = new google.maps.Marker ({
+			position: summit,
+			map: map,
+			title: "Summit, NY"
+		});
+		nashvilleMarker.addListener('click', function() {
+			nashVilleWindow.open(map, nashvilleMarker);
+		});
+		
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8tGgtxYhRa0tjezEbVRahvtcneaDP23o&callback=initMap">
+    </script>
+  </body>
+</html>
