@@ -23,7 +23,7 @@
       function initMap() {
         var deerPark = {lat:40.7618, lng: -73.3293};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 5,
           center: deerPark,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
         });
@@ -55,11 +55,16 @@
           var nashvilleCoordinates = {lat: 36.1627, lng: -86.7816};
           var summit = {lat:42.5795, lng: -74.5882};
 
-          function createMarker(coordinates, html) {
+
+          //TODO: fix title window
+
+          function createMarker(coordinates, name,  html) {
               var newmarker = new google.maps.Marker({
                   position: coordinates,
                   map: map,
-                  title: html
+                  draggable: true,
+                  animation: google.maps.Animation.DROP,
+                  title: name
               });
 
               newmarker['infowindow'] = new google.maps.InfoWindow({
@@ -71,9 +76,9 @@
               });
           }
 
-          createMarker(nashvilleCoordinates, nashvilleTN);
-          createMarker(summit, `<p>Home away from home</p>`);
-          createMarker({lat: 40.760888 ,lng: -73.329048}, deerParkInfo);
+          createMarker(nashvilleCoordinates, 'Nasville, TN', nashvilleTN);
+          createMarker(summit, 'Summit, NY', `<p>Home away from home</p>`);
+          createMarker({lat: 40.760888 ,lng: -73.329048},'Deer Park, NY', deerParkInfo);
 
 
 		/*
