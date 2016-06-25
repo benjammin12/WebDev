@@ -50,21 +50,35 @@
 						'<p>Visited during my 2015 roadtrip. this place has '+
 						'an awesome nightlife that is based around its rich ' +
 						'music culture</p>'
-		/*
-		var placesVisitied = {
-			"Cities" : ["Deer Park", "Nashville", "Summit"],
-			var journal = [];
 
-			function addEntry(events, didITurnIntoASquirrel) {
-			  journal.push({
-				events: events,
-				squirrel: didITurnIntoASquirrel
-  });
-}
-		
-		}
-		
-		*/
+
+          var nashvilleCoordinates = {lat: 36.1627, lng: -86.7816};
+          var summit = {lat:42.5795, lng: -74.5882};
+
+          function createMarker(coordinates, html) {
+              var newmarker = new google.maps.Marker({
+                  position: coordinates,
+                  map: map,
+                  title: html
+              });
+
+              newmarker['infowindow'] = new google.maps.InfoWindow({
+                  content: html
+              });
+
+              google.maps.event.addListener(newmarker, 'click', function() {
+                  this['infowindow'].open(map, this);
+              });
+          }
+
+          createMarker(nashvilleCoordinates, nashvilleTN);
+          createMarker(summit, `<p>Home away from home</p>`);
+          createMarker({lat: 40.760888 ,lng: -73.329048}, deerParkInfo);
+
+
+		/*
+
+
 		var marker = [];
 
 		function addMarker(coordinates, name) {
@@ -78,76 +92,22 @@
 
 		}
 
-          var infoWindows = [];
-
-        function addWindow(cityName){
-
-            infoWindows = new google.maps.InfoWindow({
-                content: cityName
-            })
-
-        }
-
-          addWindow(deerParkInfo);
-        var nashVilleWindow =  addWindow(nashvilleTN);
+		  addMarker({lat: 36.1627 , lng: 86.7816}, "SKEWR");
+          addMarker({lat: 44.134, lng: -64.234}, "Someplace");
 
 
-       var nashvilleMarker = addMarker({lat: 36.1627, lng: -86.7816}, "Nashville, TN");
-		addMarker(deerPark, 'Deer Park, NY');
-		addMarker({lat: 36.1627 , lng: 86.7816}, "SKEWR");
 
 
-          var summit = {lat:42.5795, lng: -74.5882};
-          addMarker(summit, "Summit, NY");
-          //verify addMarker function works!
-		
-		  console.log(marker);
-          console.log(infoWindows);
 
-          //TODO: Fix windows
+
 		
 		
 			
-			//TODO: onclick add new marker 
-	//TODO: create a repition statement or function to add a list of cities plus there info rather than one at a time
-
-        /*
-
-        var infowindow = new google.maps.InfoWindow({
-          content: deerParkInfo
-        });
-		
-		var nashVilleWindow = new google.maps.InfoWindow({
-			content: nashvilleTN
-		});
-		
-		var nashvilleMarker = new google.maps.Marker({
-			position: {lat: 36.1627 , lng: -86.7816},
-			map: map,
-			title: 'Nashville, TN'
-		});
+			//TODO: onclick add new marker
+	//TODO: create a repition statement or function to add a list of cities plus their info rather than one at a time
 
 
-		
-	*/	//42.5795° N, 74.5882° W
-
-
-
-
-
-
-
-		nashvilleMarker.addListener('click', function() {
-			nashVilleWindow.open(map, nashvilleMarker);
-		});
-
-
-
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-
-
+*/
 
 
       }
