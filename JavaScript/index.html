@@ -25,9 +25,9 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: deerPark,
-		  mapTypeId: google.maps.MapTypeId.SATELLITE
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-		
+
 		//40.7618° N, 73.3293° W
 		//40.760888, -73.329048
 
@@ -45,12 +45,12 @@
             '(last visited June 22, 2009).</p>'+
             '</div>'+
             '</div>';
-			
+
 		var  nashvilleTN = '<h1> Nashville, TN </h1>' +
 						'<p>Visited during my 2015 roadtrip. this place has '+
 						'an awesome nightlife that is based around its rich ' +
 						'music culture</p>'
-		/*		
+		/*
 		var placesVisitied = {
 			"Cities" : ["Deer Park", "Nashville", "Summit"],
 			var journal = [];
@@ -66,25 +66,52 @@
 		
 		*/
 		var marker = [];
-		
+
 		function addMarker(coordinates, name) {
+
 			marker = new google.maps.Marker({
-				position : coordinates, 
+				position : coordinates,
 				title: name,
 				map: map
 			})
-		}	
-		
+
+
+		}
+
+          var infoWindows = [];
+
+        function addWindow(cityName){
+
+            infoWindows = new google.maps.InfoWindow({
+                content: cityName
+            })
+
+        }
+
+          addWindow(deerParkInfo);
+        var nashVilleWindow =  addWindow(nashvilleTN);
+
+
+       var nashvilleMarker = addMarker({lat: 36.1627, lng: -86.7816}, "Nashville, TN");
 		addMarker(deerPark, 'Deer Park, NY');
-		addMarker({lat: 36.1627 , lng: 86.7816}, "SKEWR");  //verify addMarker function works!
+		addMarker({lat: 36.1627 , lng: 86.7816}, "SKEWR");
+
+
+          var summit = {lat:42.5795, lng: -74.5882};
+          addMarker(summit, "Summit, NY");
+          //verify addMarker function works!
 		
-		console.log(marker.toString());  //whats marker printing outline
-		//TODO: Fix windows
+		  console.log(marker);
+          console.log(infoWindows);
+
+          //TODO: Fix windows
 		
 		
 			
 			//TODO: onclick add new marker 
 	//TODO: create a repition statement or function to add a list of cities plus there info rather than one at a time
+
+        /*
 
         var infowindow = new google.maps.InfoWindow({
           content: deerParkInfo
@@ -99,27 +126,30 @@
 			map: map,
 			title: 'Nashville, TN'
 		});
-/*
-        var marker = new google.maps.Marker({
-          position: deerPark,
-          map: map,
-          title: 'Deer Park, NY'
-        });
+
+
 		
 	*/	//42.5795° N, 74.5882° W
-		var summit = {lat:42.5795, lng: -74.5882};
-		var sum = new google.maps.Marker ({
-			position: summit,
-			map: map,
-			title: "Summit, NY"
-		});
+
+
+
+
+
+
+
 		nashvilleMarker.addListener('click', function() {
 			nashVilleWindow.open(map, nashvilleMarker);
 		});
-		
+
+
+
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
+
+
+
+
       }
     </script>
     <script async defer
