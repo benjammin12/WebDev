@@ -53,10 +53,35 @@
 		/*		
 		var placesVisitied = {
 			"Cities" : ["Deer Park", "Nashville", "Summit"],
+			var journal = [];
+
+			function addEntry(events, didITurnIntoASquirrel) {
+			  journal.push({
+				events: events,
+				squirrel: didITurnIntoASquirrel
+  });
+}
 		
 		}
 		
 		*/
+		var marker = [];
+		
+		function addMarker(coordinates, name) {
+			marker = new google.maps.Marker({
+				position : coordinates, 
+				title: name,
+				map: map
+			})
+		}	
+		
+		addMarker(deerPark, 'Deer Park, NY');
+		addMarker({lat: 36.1627 , lng: 86.7816}, "SKEWR");  //verify addMarker function works!
+		
+		console.log(marker.toString());  //whats marker printing outline
+		//TODO: Fix windows
+		
+		
 			
 			//TODO: onclick add new marker 
 	//TODO: create a repition statement or function to add a list of cities plus there info rather than one at a time
@@ -74,14 +99,14 @@
 			map: map,
 			title: 'Nashville, TN'
 		});
-
+/*
         var marker = new google.maps.Marker({
           position: deerPark,
           map: map,
           title: 'Deer Park, NY'
         });
 		
-		//42.5795° N, 74.5882° W
+	*/	//42.5795° N, 74.5882° W
 		var summit = {lat:42.5795, lng: -74.5882};
 		var sum = new google.maps.Marker ({
 			position: summit,
