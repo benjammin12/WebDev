@@ -1,6 +1,7 @@
 function initMap() {
+
     var deerPark = {lat:40.7618, lng: -73.3293};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map-container'), {
         zoom: 4,
         center: {lat:40, lng: -80},
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -68,6 +69,18 @@ function initMap() {
     createMarker(summit, 'Summit, NY', summitNY);
     createMarker({lat: 40.760888 ,lng: -73.329048},'Deer Park, NY', deerParkInfo);
     createMarker({lat: 32.7767, lng: -96.7970}, 'Dallas, TX', dallasTX);
+
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        placeMarker(event.latLng);
+    });
+
+    function placeMarker(location) {
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
 
 }
 
